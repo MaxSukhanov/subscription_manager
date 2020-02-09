@@ -10,44 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_141930) do
+ActiveRecord::Schema.define(version: 2020_02_09_180134) do
 
   create_table "customers", force: :cascade do |t|
-    t.string "stripe_customer_id"
+    t.string "stripe_id"
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   create_table "plans", force: :cascade do |t|
-    t.string "stripe_product_id"
+    t.string "stripe_id"
+    t.string "product_id"
     t.string "interval"
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "stripe_plan_id"
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "stripe_id"
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "stripe_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.string "stripe_subscription_id"
+    t.string "stripe_id"
     t.string "stripe_customer_id"
     t.string "stripe_plan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

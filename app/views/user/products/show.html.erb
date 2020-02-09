@@ -1,0 +1,12 @@
+<h1> <%= @product.name %> </h1>
+<p> <%= @product.description%> </p>
+
+<%= form_tag subscriptions_path do %>
+  <%= hidden_field_tag 'product_id', @product.stripe_id %>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description="Week's subscription"
+  data-email = "<%= session[:user_email]%>">
+  </script>
+<% end %>
+<p><%= link_to 'Back to product list', products_path %></p>

@@ -1,4 +1,4 @@
-require "stripe_services.rb"
+require_relative 'product_service'
 class CreateStripeProduct
   include Interactor
   delegate :name, :description, to: :context

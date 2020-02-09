@@ -1,0 +1,16 @@
+<h1>Listing Products</h1>
+<br>
+
+<% if current_user %>
+  <h1>You are logged in, <%= current_user[:name]%></h1>
+  <%= button_to "Log out", logout_path%>
+<%else%>
+    <%= button_to "Log in", login_path%>
+    <%= button_to "Sing up", signup_path%>
+<%end%>
+
+<br>
+  <% @products.each do |n| %>
+    <h2> <%= link_to n.name, product_path(n.id) %> </h2>
+    <%= button_to "Subscribe", product_path(n.id)%>
+<% end %>

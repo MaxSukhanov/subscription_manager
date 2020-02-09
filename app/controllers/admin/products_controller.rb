@@ -1,5 +1,5 @@
-require 'create_product.rb'
-class ProductsController < ApplicationController
+require 'create_product/create_product.rb'
+class Admin::ProductsController < ApplicationController
   before_action :find_product, except: [:index, :new, :create]
 
   def index
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       product_params
     )
     if result.success?
-      redirect_to products_path
+      redirect_to admin_products_path
     else
       render action: 'new'
     end
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path, notice: "Product was deleted"
+    redirect_to admin_products_path, notice: "Product was deleted"
   end
 
   private 
@@ -34,5 +34,4 @@ class ProductsController < ApplicationController
     def find_product
       @product = Product.find params[:id]
     end
-
 end

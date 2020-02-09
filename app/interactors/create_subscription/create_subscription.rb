@@ -1,7 +1,7 @@
-require "stripe_services.rb"
-class CreateSubscription
+require_relative "subscription_service"
+class CreateStripeSubscription
   include Interactor
-  delegate :customer_id, :plan_id, to: :context
+  delegate :customer, :plan, to: :context
   
     def call
       create_stripe_subscription
@@ -12,16 +12,16 @@ class CreateSubscription
   
     private
       def create_stripe_subscription
-        Stripe::Subscription.create({
-        customer: customer_id,
-        items: [{plan: plan_id}],
-        })
+        Stripe::Subscription.new(
+          customer,
+          plan,
+        )
       end
   
       def create_subscription
         Subscription.create(
-          customer: customer_id,
-          plan: plan_id
+          customer: customer,
+          plan: plan
         )
       end
   end

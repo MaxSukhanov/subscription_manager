@@ -1,9 +1,0 @@
-<h1> Create plan </h1>
-<%= params %>
-<%= @plan.stripe_product_id = params[:stripe_id]%>
-
-<%= form_with model: @plan do |p| %>
-<p> Interval: <%= p.text_field :interval%></p>
-<%= p[:stripe_product_id]%>
-  <%= submit_tag "Create", action: 'create' %>
-<% end %>
