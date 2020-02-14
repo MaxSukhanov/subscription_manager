@@ -1,0 +1,15 @@
+<h1>Listing Products</h1>
+  <%@products.each do |n| %>
+    <h2> <%= link_to n.name, product_path(n.id) %> </h2>
+    <%= button_to "Subscribe", product_path(n.id), method: :get%>
+    <% if current_user && current_user.admin?%>
+    <b><%= button_to "Delete", product_path(n.id),
+        data: { confirm: "Do you really want to delete this product?"},
+        method: :delete %>
+    </b>
+    <% end %>
+    <hr>
+  <%end%>
+  <% if current_user && current_user.admin?%>
+  <p><%= button_to "Create new product", new_product_path, :method => :get %></p>
+  <% end %>

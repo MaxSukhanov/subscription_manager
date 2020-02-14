@@ -1,5 +1,7 @@
 require 'create_product/create_product.rb'
-class Admin::ProductsController < ApplicationController
+class ProductsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_product, except: [:index, :new, :create]
 
   def index
@@ -15,7 +17,7 @@ class Admin::ProductsController < ApplicationController
       product_params
     )
     if result.success?
-      redirect_to admin_products_path
+      redirect_to products_path
     else
       render action: 'new'
     end
@@ -23,7 +25,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to admin_products_path, notice: "Product was deleted"
+    redirect_to products_path, notice: "Product #{@product.name} was deleted"
   end
 
   private 

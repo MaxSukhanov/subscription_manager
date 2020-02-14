@@ -10,8 +10,6 @@ class CustomersController < ApplicationController
       customer_params: customer_params,
     )
     if result.success?
-      session[:user_id] = result.customer[:id]
-      session[:user_email] = result.customer[:email]
       redirect_to '/products'
     else
       redirect_to '/new'
