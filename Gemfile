@@ -63,3 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "interactor-rails", "~> 2.0"
 gem 'stripe', '~> 5.11'
 gem 'stripe-rails', '~> 1.9', '>= 1.9.1'
+
+# Use devise for authentication
+gem 'devise', '~> 4.2'
