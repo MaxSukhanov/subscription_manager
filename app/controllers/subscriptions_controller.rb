@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
       plan: plan,
       subscription: subscription_params
     )
-    if result.succsess?
+    if result.success?
       redirect_to products_path
     else 
       redirect_to products_path, alert: "Subscription wasn't created. Try again"
