@@ -1,24 +1,27 @@
 require 'create_subscription/create_subscription.rb'
 class SubscriptionsController < ApplicationController
-  before_action :find_plan, only: [:create]
   skip_before_action :verify_authenticity_token
   
   def new
   end
 
   def create
-    CreateStripeSubscription.call(
+    result = CreateStripeSubscription.call(
       customer: session[:user_id],
       plan: plan,
       subscription: subscription_params
     )
-    redirect_to '/products'
+    if result.succsess?
+      redirect_to products_path
+    else 
+      redirect_to products_path, alert: "Subscription wasn't created. Try again"
+    end
   end
 
 
   private
-    def find_plan
-      @plan = Plan.find_by(product_id: params[:product_id])
+    def plan
+      Plan.find_by(product_id: params[:product_id])
     end
 
     def subscription_params
