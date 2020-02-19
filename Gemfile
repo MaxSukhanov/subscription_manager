@@ -60,8 +60,12 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use interactor for business logic organisation
 gem "interactor-rails", "~> 2.0"
+# Use stripe for payment system implementation
 gem 'stripe', '~> 5.11'
 
 #Use cancancan for authorization
 gem 'cancancan', '~> 3.0', '>= 3.0.2'
+# Use devise for authentication
+gem 'devise', '~> 4.2'
