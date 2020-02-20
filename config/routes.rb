@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :products,
-            :plans,
-            :subscriptions,
-            :customers
+  resources :products
+  resources :plans
+  resources :subscriptions
+  resources :customers
 end
