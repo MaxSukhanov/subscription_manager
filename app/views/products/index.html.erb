@@ -5,9 +5,13 @@
 <br>
   <%@products.each do |n| %>
     <h2> <%= link_to n.name, product_path(n.id) %> </h2>
-    <p>
-      <b><%= button_to "Delete", product_path(n.id), data: { confirm: "Do you really want to delete this product?"},  method: :delete %></b>
-    </p>
+    <% if current_user&.admin? %>
+      <p>
+        <b><%= button_to "Delete", product_path(n.id), data: { confirm: "Do you really want to delete this product?" },  method: :delete %></b>
+      </p>
+    <%end%>
     <hr>
   <%end%>
-<p><%= button_to "Create new product", new_product_path %></p>
+  <% if current_user&.admin? %>
+    <p><%= button_to "Create new product", new_product_path %></p>
+  <%end%>
