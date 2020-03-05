@@ -1,8 +1,0 @@
-<h1> <%= @product.name %> </h1>
-<p> <%= @product.description%> </p>
-
-<%= form_with model: [:admin, @product, @product.plans.new] do |p|%>
-  <%= p.submit("Add plan")%>
-<%end%>
-
-<%= button_to 'Back to product list', products_path %>
