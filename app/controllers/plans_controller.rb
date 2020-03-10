@@ -1,5 +1,5 @@
 require 'create_plan/create_plan.rb'
-class PlansController < ApplicationController
+class Admin::PlansController < ApplicationController
  
   def create
     result = CreateStripePlan.call(
