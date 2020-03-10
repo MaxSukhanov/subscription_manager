@@ -1,14 +1,16 @@
 <h1>Listing Products</h1>
-<br>
-<%= button_to "Login", '/login',method: :get%>
-<%= button_to "Sing up", '/users/new', method: :get%>
-<br>
-  <%@products.each do |n| %>
-    <h2> <%= link_to n.name, product_path(n.id) %> </h2>
-    <p><%= button_to "Subscribe", new_subscription_path %></p>
+
+<% @products.each do |n| %>
+  <h2><%= link_to n.name, product_path(n.id) %> </h2>
+  <p><%= button_to "Subscribe", new_subscription_path %></p>
+  <% if current_user&.admin? %>
     <p>
-      <b><%= button_to "Delete", product_path(n.id), data: { confirm: "Do you really want to delete this product?"},  method: :delete %></b>
+      <b><%= button_to "Delete", product_path(n.id), data: { confirm: "Do you really want to delete this product?" },  method: :delete %></b>
     </p>
-    <hr>
-  <%end%>
-<p><%= button_to "Create new product", new_product_path %></p>
+  <% end %>
+  <hr>
+<% end %>
+
+<% if current_user&.admin? %>
+  <p><%= link_to "Create new product", new_product_path %></p>
+<% end %>
