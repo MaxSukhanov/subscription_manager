@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :products
-  resources :plans
+
+  namespace :admin do
+    resources :products
+    resources :plans
+  end
+  
   resources :subscriptions
   resources :customers
 end
