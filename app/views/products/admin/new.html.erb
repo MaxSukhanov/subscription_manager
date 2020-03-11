@@ -1,7 +1,7 @@
 <h1>Create new product</h1>
-<%= form_with model: @product do |f|%>
-  <p>Name: <%= f.text_field :name %></p>
-  <p>Description: <%= f.text_area :description %></p>
-  <%= submit_tag "Create"%>
+<%= form_with model: @product do |form| %>
+  <p>Name: <%= form.text_field :name %></p>
+  <p>Description: <%= form.text_area :description %></p>
+  <%= submit_tag "Create" %>
 <% end %>
-<%= button_to 'Back to product list', admin_products_path %>
+<%= link_to 'Back to product list', admin_products_path %>
