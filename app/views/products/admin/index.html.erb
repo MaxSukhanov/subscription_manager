@@ -1,0 +1,11 @@
+<h1>Listing Products</h1>
+<br>
+<% @products.each do |product| %>
+  <h2> <%= link_to product.name, admin_product_path(product) %> </h2>
+  <p>
+    <b><%= link_to "Delete", admin_product_path(product), method: :delete, data: { confirm: "Do you really want to delete this product?" } %></b>
+  </p>
+  <hr>
+<% end %>
+
+<p><%= link_to "Create new product", new_admin_product_path %></p>
