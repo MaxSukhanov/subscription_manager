@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def show
+    @plan = @product.plans.new
+  end
+
   def create
     result = CreateStripeProduct.call(
       product_params
