@@ -1,5 +1,5 @@
 require 'create_plan/create_plan.rb'
-class PlansController < ApplicationController
+class Admin::PlansController < ApplicationController
 
   def index
     @plans = Plan.all
@@ -28,4 +28,5 @@ class PlansController < ApplicationController
   private
     def plan_params
       params.require(:plan).permit(:product, :interval, :amount)
+    end
 end

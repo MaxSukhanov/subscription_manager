@@ -1,5 +1,5 @@
 <h1> Add New Plan </h1>
-<%= form_with model: @plan do |form| %>
+<%= form_with model: [:admin, @plan] do |form| %>
   <p> Product: <%= collection_select(:plan, :product, Product.all, :stripe_id, :name) %></p>
   <p> Interval: <%= select(:plan, :interval, [['week'], ['month']]) %>
   <p> Amount: <%= select(:plan, :amount, [['10'], ['20']]) %>
