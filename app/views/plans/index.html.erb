@@ -1,0 +1,11 @@
+<h1> Listing plans </h1> 
+
+<% @plans.each do |plan| %>
+  <p><%= plan.stripe_id %></p>
+  <p><%= plan.product %></p>
+  <p><%= plan.interval %></p>
+  <p><%= plan.amount %></p>
+  <hr>
+<% end %>
+
+<%= link_to "Add pricing plan", new_plan_path %>
