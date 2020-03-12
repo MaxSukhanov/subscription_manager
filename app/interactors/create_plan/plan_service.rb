@@ -1,24 +1,20 @@
 module Stripe
   class PlanService
-    attr_reader :product
+    attr_reader :amount, :interval, :product
 
-    def initialize(product)
+    def initialize(amount, interval, product)
+      @amount = amount
+      @interval = interval
       @product = product
     end
 
     def create_plan
       Stripe::Plan.create(
-        build_plan_params
-      )
-    end
-
-    def build_plan_params
-      {
-        amount: 50,
+        amount: amount,
         currency: 'usd',
-        interval: 'week',
-        product: product.stripe_id,
-      }
+        interval: interval,
+        product: product,
+      )
     end
   end
 end

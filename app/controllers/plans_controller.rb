@@ -11,7 +11,7 @@ class Admin::PlansController < ApplicationController
 
   def create
     result = CreateStripePlan.call(
-        plan: plan_params
+        plan_params
       )
     if result.success?
       redirect_to admin_plans_path

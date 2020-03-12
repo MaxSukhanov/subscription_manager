@@ -1,6 +1,7 @@
 require_relative "plan_service"
 class CreateStripePlan
   include Interactor
+  delegate :product, :interval, :amount, to: :context
 
   def call
     create_stripe_plan
@@ -11,16 +12,19 @@ class CreateStripePlan
 
   private
     def create_stripe_plan
-      context.plan = Stripe::PlanService.new(
-        context.product
+      plan = Stripe::PlanService.new(
+        product,
+        interval,
+        amount,
       ).create_plan
+      context.stripe_plan_id = plan.id
     end
 
     def create_plan
-        context.product.plans.create(
-          stripe_id: context.plan[:id],
-          interval: context.plan[:interval],
-          amount: context.plan[:amount],
+        Plan.create(
+          stripe_id: context.stripe_plan_id,
+          interval: interval,
+          amount: amount,
         )
     end
 end
