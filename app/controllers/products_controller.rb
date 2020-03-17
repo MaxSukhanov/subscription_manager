@@ -11,13 +11,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    result = CreateStripeProduct.call(
-      product_params
-    )
+    result = CreateStripeProduct.call(product_params)
     if result.success?
       redirect_to products_path
     else
-      render action: 'new'
+      render :new
     end
   end
 

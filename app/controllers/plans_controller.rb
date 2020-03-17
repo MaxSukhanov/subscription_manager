@@ -10,13 +10,11 @@ class Admin::PlansController < ApplicationController
   end
 
   def create
-    result = CreateStripePlan.call(
-        plan_params
-      )
+    result = CreateStripePlan.call(plan_params)
     if result.success?
       redirect_to admin_plans_path
     else
-      render action: 'new'
+      render :new
     end
   end
 

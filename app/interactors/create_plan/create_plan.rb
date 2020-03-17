@@ -12,11 +12,7 @@ class CreateStripePlan
 
   private
     def create_stripe_plan
-      plan = Stripe::PlanService.new(
-        product,
-        interval,
-        amount,
-      ).create_plan
+      plan = Stripe::PlanService.new(product, interval, amount,).create_plan
       context.stripe_plan_id = plan.id
     end
 
