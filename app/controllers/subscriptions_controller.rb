@@ -1,4 +1,3 @@
-require 'create_subscription/create_subscription.rb'
 class SubscriptionsController < ApplicationController
   #before_action :find_plan, only: [:create]
   def new

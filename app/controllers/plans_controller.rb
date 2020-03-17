@@ -1,4 +1,3 @@
-require 'create_plan/create_plan.rb'
 class Admin::PlansController < ApplicationController
 
   def index

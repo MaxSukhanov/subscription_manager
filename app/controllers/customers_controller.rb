@@ -1,4 +1,3 @@
-require 'create_customer/create_customer.rb'
 class CustomersController < ApplicationController
 
   def new

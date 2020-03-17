@@ -1,4 +1,3 @@
-require 'create_product/create_product.rb'
 class ProductsController < ApplicationController
   before_action :find_product, except: [:index, :new, :create]
 
