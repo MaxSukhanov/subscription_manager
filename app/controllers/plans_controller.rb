@@ -1,20 +1,29 @@
-require 'create_plan/create_plan.rb'
-class PlansController < ApplicationController
- 
+class Admin::PlansController < ApplicationController
+
+  def index
+    @plans = Plan.all
+  end
+
+  def new
+    @plan = Plan.new
+  end
+
   def create
-    result = CreateStripePlan.call(
-        product: product
-      )
+    result = CreateStripePlan.call(plan_params)
     if result.success?
-      redirect_to products_path
+      redirect_to admin_plans_path
     else
-      render action: 'new'
+      render :new
     end
   end
 
-  private
+  def destroy
+    @plan.destroy
+    redirect_to admin_plans_path, notice: "Plan was deleted"
+  end
 
-    def product
-      Product.find(params[:product_id])
+  private
+    def plan_params
+      params.require(:plan).permit(:product, :interval, :amount)
     end
 end

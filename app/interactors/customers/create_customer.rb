@@ -1,5 +1,5 @@
-require_relative 'customer_service'
-class CreateStripeCustomer
+module Customers
+  class CreateStripeCustomer
     include Interactor
     delegate :customer_params, to: :context
 
@@ -12,7 +12,7 @@ class CreateStripeCustomer
 
     private
       def create_stripe_customer
-        context.customer = Stripe::CustomerService.new(
+        context.customer = CustomerService.new(
           customer_params[:name],
           customer_params[:email],
         ).create_customer
@@ -26,4 +26,5 @@ class CreateStripeCustomer
           password: customer_params[:password],
         )
       end
+  end
 end

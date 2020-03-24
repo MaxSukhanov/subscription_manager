@@ -1,4 +1,3 @@
-require 'create_product/create_product.rb'
 class ProductsController < ApplicationController
   before_action :find_product, except: [:index, :new, :create]
 
@@ -11,13 +10,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    result = CreateStripeProduct.call(
-      product_params
-    )
+    result = CreateStripeProduct.call(product_params)
     if result.success?
       redirect_to products_path
     else
-      render action: 'new'
+      render :new
     end
   end
 
