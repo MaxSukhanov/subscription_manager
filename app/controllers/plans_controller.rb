@@ -19,4 +19,7 @@ class PlansController < ApplicationController
     end
 
     def; end
+
+    def another
+    end
 end
